@@ -64,8 +64,9 @@ func (h *handler) ServeStream(srv interface{}, srcStream grpc.ServerStream) erro
 			dstCancel()
 			errCh <- err
 		}()
+		msg := &emptypb.Empty{}
+
 		for {
-			msg := &emptypb.Empty{}
 			if err = srcStream.RecvMsg(msg); err != nil {
 				return
 			}
