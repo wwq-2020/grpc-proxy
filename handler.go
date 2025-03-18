@@ -86,8 +86,9 @@ func (h *handler) ServeStream(srv interface{}, srcStream grpc.ServerStream) erro
 			errCh <- err
 		}()
 		count := 0
+		msg := &emptypb.Empty{}
+
 		for {
-			msg := &emptypb.Empty{}
 			if err := destStream.RecvMsg(msg); err != nil {
 				return
 			}
