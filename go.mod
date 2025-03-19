@@ -1,6 +1,6 @@
 module github.com/wwq-2020/grpc-proxy
 
-go 1.23.3
+go 1.22.4
 
 require (
 	google.golang.org/grpc v1.70.0
