@@ -105,7 +105,7 @@ func (h *handler) ServeStream(srv interface{}, srcStream grpc.ServerStream) (err
 	if !ok {
 		return status.Errorf(codes.InvalidArgument, "method not foun")
 	}
-	destCtx, destConn, err := h.director(srcStream.Context(), method)
+	destCtx, destConn, err := h.director(hookCtx, method)
 	if err != nil {
 		return status.Errorf(codes.Internal, "failed to director,err:%v", err)
 	}
