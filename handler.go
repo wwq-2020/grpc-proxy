@@ -100,7 +100,7 @@ func (h *handler) ServeStream(srv interface{}, srcStream grpc.ServerStream) (err
 	method, ok := grpc.MethodFromServerStream(srcStream)
 
 	hookCtx := h.hook.OnStart(srcStream.Context(), method)
-	defer h.hook.OnFinish(hookCtx, method, err)
+	defer func() { h.hook.OnFinish(hookCtx, method, err) }()
 
 	if !ok {
 		return status.Errorf(codes.InvalidArgument, "method not foun")
